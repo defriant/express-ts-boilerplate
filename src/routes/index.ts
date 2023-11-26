@@ -1,11 +1,10 @@
 import { Response, Router } from 'express'
+import exampleRoute from './example'
 
 const Route = Router()
 
-const routes = (): Router => {
-    Route.get('/*', (_, res: Response) => res.status(404).json({ message: 'Resource not found' }))
+Route.use('/', exampleRoute)
 
-    return Route
-}
+Route.all('/*', (_, res: Response) => res.status(404).json({ message: 'Resource not found' }))
 
-export default routes
+export default Route
